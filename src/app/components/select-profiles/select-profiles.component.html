@@ -1,0 +1,10 @@
+<section class="container">
+  <h2>Select Your Profiles</h2>
+  <ul class="profile-list">
+    <li *ngFor="let profile of profiles" [ngClass]="{'selected': profile.selected}" (click)="selectProfile(profile)" (click)="profile.selected = !profile.selected">
+      {{profile.name}}
+    </li>
+  </ul>
+
+  <button class="submit">Submit Profiles</button>
+</section>
