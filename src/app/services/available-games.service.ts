@@ -11,11 +11,13 @@ export class AvailableGamesService {
     this.http = http;
   }
 
+  // Grabs an array of games available to play
   public getAvailableGames(): Observable<any> {
     // Replace with your endpoint
     return this.http.get(this.apiUri + '/assets/availableGames.json');
   }
 
+  // Selects a game to start
   public selectGame(selectedGame): Observable<any> {
     // Replace with your endpoint
     return this.http.post(this.apiUri + '/sampleendpoint', selectedGame);

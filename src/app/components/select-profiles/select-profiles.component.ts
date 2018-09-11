@@ -25,16 +25,20 @@ export class SelectProfilesComponent implements OnInit {
   }
 
   ngOnInit() {
+    // grabs current game by its id
     this.route.params.subscribe(params => {
       this.getGameById(params.gameId);
     });
 
+    // grabs list of all available profiles
     this.profilesService.getAvailableProfiles()
       .subscribe(profiles => {
         this.profiles = profiles;
       });
   }
 
+  // helper method which uses the route params
+  // to grab the current game by its id
   public getGameById(gameId): void {
     this.gameService.getGameById(gameId)
       .subscribe(game => {
@@ -42,6 +46,8 @@ export class SelectProfilesComponent implements OnInit {
       });
   }
 
+  // selects or deselects an individual profile and adds
+  // or removes it from the selectedProfiles array
   public selectProfile(profile): void {
     if (this.selectedProfiles.includes(profile)) {
       this.selectedProfiles.splice(this.selectedProfiles.indexOf(profile), 1);
@@ -50,6 +56,8 @@ export class SelectProfilesComponent implements OnInit {
     }
   }
 
+  // takes all the profiles selected and passes them to the service, along with the game.
+  // Use this to add profiles/players to a particular game
   public submitProfiles(): void {
     this.profilesService.selectProfiles(this.game, this.profiles)
       .subscribe(game => {

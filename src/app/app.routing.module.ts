@@ -7,7 +7,6 @@ import { SelectGameComponent } from './components/select-game/select-game.compon
 import { SelectProfilesComponent } from './components/select-profiles/select-profiles.component';
 import { GameComponent } from './components/game/game.component';
 
-// Missing Components
 export const routes: Routes = [
   {
     path: 'home',

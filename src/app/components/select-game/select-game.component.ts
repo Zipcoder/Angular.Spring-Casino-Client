@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AvailableGamesService } from '../../services/available-games.service';
 
 @Component({
@@ -9,15 +9,15 @@ import { AvailableGamesService } from '../../services/available-games.service';
 export class SelectGameComponent implements OnInit {
   public games: any[];
   private router: Router;
-  private route: ActivatedRoute;
   private availableGamesService: AvailableGamesService;
 
-  constructor(availableGamesService: AvailableGamesService, router: Router, route: ActivatedRoute) {
+  constructor(availableGamesService: AvailableGamesService, router: Router) {
     this.availableGamesService = availableGamesService;
     this.router = router;
   }
 
   ngOnInit(): void {
+    // Grabs a list of games available to play
     this.availableGamesService.getAvailableGames()
       .subscribe(games => {
         this.games = games;
@@ -25,12 +25,12 @@ export class SelectGameComponent implements OnInit {
   }
 
   public selectGame(selectedGame) {
+    // selects a game, then receives back the created game from the api
     this.availableGamesService.selectGame(selectedGame)
       .subscribe(game => {
+        /* uses the created game from the api to navigate to the
+           selectProfiles route, passing the game id as a path variable */
         this.router.navigate([`game/${game.id}/select-profiles/`]);
       });
-    // TESTING, REMOVE BOTTOM TWO LINES
-    const testGame = {id: 1};
-    this.router.navigate([`game/${testGame.id}/select-profiles/`]);
   }
 }

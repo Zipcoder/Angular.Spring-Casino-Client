@@ -18,11 +18,13 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // grabs the current game by its id
     this.route.params.subscribe(params => {
       this.getGameById(params.gameId);
     });
   }
 
+  // helper method which grabs the current game by its id
   public getGameById(gameId): void {
     this.gameService.getGameById(gameId)
       .subscribe(game => {
@@ -30,6 +32,8 @@ export class GameComponent implements OnInit {
       });
   }
 
+  /* takes input from the input box and sends
+     it to the game service to process a turn */
   public submitInput(): void {
     this.gameService.submitInput(this.game, this.input)
       .subscribe(game => {

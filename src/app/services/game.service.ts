@@ -11,8 +11,9 @@ export class GameService {
     this.http = http;
   }
 
+  // gets a game by its id
   public getGameById(id: number): Observable<any> {
-    // Replace with your endpoint
+    // Replace with your endpoint, passing in the game id;
     return this.http.get(this.apiUri + `/games/${id}`);
   }
 
