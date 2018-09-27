@@ -5,32 +5,33 @@ import { CommonModule } from '@angular/common';
 
 import { SelectGameComponent } from './components/select-game/select-game.component';
 import { SelectProfilesComponent } from './components/select-profiles/select-profiles.component';
-import { GameComponent } from './components/game/game.component';
+import { HighlowGameComponent } from './components/highlow-game/highlow-game.component';
 
 export const routes: Routes = [
   {
-    path: 'home',
+    path: 'games',
     component: SelectGameComponent,
-    data: { title: 'Home' }
+    data: { title: 'Select A Game' }
   },
   {
-    path: 'game/:gameId/select-profiles',
+    path: 'games/highlow/:gameId/select-profile',
     component: SelectProfilesComponent,
     data: { title: 'Select Profiles'}
   },
   {
-    path: 'game/:gameId',
-    component: GameComponent,
+    path: 'games/highlow/:gameId',
+    component: HighlowGameComponent,
     data: { title: 'Game'}
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'games',
     pathMatch: 'full',
   },
   {
     path: '**',
-    component: SelectGameComponent
+    redirectTo: 'games',
+    pathMatch: 'full'
   }
 ];
 

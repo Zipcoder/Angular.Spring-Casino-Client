@@ -1,0 +1,11 @@
+<section class="container">
+  <button (click)="getCard()" class="button">Get Card</button>
+  <div class="results">
+    <ng-container class="player" *ngFor="let player of game.players">
+      <div class="player" *ngIf="player.hand.cardList[0]">
+        {{player.name}} got a {{player?.hand.cardList[0].rank}} {{player.hand.cardList[0].suit}}
+      </div>
+    </ng-container>
+  </div>
+  <div class="result">{{result}}</div>
+</section>

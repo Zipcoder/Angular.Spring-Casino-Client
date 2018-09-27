@@ -1,10 +1,11 @@
 <section class="container">
   <h2>Select Your Profiles</h2>
   <ul class="profile-list">
-    <li *ngFor="let profile of profiles" [ngClass]="{'selected': profile.selected}" (click)="selectProfile(profile)" (click)="profile.selected = !profile.selected">
-      {{profile.name}}
-    </li>
+    <ng-container *ngFor="let profile of profiles">
+      <li class="button" *ngIf="profile.name != 'AI'" [ngClass]="{'selected': profile === selectedProfile}" (click)="selectProfile(profile)">
+        {{ profile.name }}
+      </li>
+    </ng-container>
   </ul>
-
-  <button class="submit">Submit Profiles</button>
+  <button class="button submit" (click)="submitProfile()">Submit Profiles</button>
 </section>

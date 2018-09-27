@@ -1,36 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AvailableGamesService } from '../../services/available-games.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { GameService } from '../../services/game.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-select-game',
   templateUrl: './select-game.component.html'
 })
-export class SelectGameComponent implements OnInit {
+export class SelectGameComponent implements OnInit, OnDestroy {
   public games: any[];
   private router: Router;
-  private availableGamesService: AvailableGamesService;
+  private route: ActivatedRoute;
+  private gameService: GameService;
+  private gameSubscription: Subscription;
 
-  constructor(availableGamesService: AvailableGamesService, router: Router) {
-    this.availableGamesService = availableGamesService;
+  constructor(gameService: GameService, router: Router, route: ActivatedRoute) {
+    this.gameService = gameService;
     this.router = router;
+    this.route = route;
   }
 
   ngOnInit(): void {
-    // Grabs a list of games available to play
-    this.availableGamesService.getAvailableGames()
-      .subscribe(games => {
-        this.games = games;
+
+  }
+
+  public selectGame(selectedGame): void {
+    this.gameService.createGame(selectedGame);
+    this.gameSubscription = this.gameService.currentGameObservable
+      .subscribe(game => {
+        if (game.id) {
+          this.router.navigate([`/games/${selectedGame}/${game.id}/select-profile`]);
+        }
       });
   }
 
-  public selectGame(selectedGame) {
-    // selects a game, then receives back the created game from the api
-    this.availableGamesService.selectGame(selectedGame)
-      .subscribe(game => {
-        /* uses the created game from the api to navigate to the
-           selectProfiles route, passing the game id as a path variable */
-        this.router.navigate([`game/${game.id}/select-profiles/`]);
-      });
+  ngOnDestroy(): void {
+    this.gameSubscription.unsubscribe();
   }
 }

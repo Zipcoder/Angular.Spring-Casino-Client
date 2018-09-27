@@ -138,14 +138,14 @@ h1 {font-weight: bold; margin-left: 10px;}
   width: 48%;
 }
 
-.game-list button, .profile-list li, .submit {
+.button {
   font-size: 28px;
   padding: 20px;
   color: white;
   margin: 10px 0;
 }
 
-.game-list button {
+.button {
   width: 100%;
   background-color: #468314;
 }
@@ -154,11 +154,44 @@ h1 {font-weight: bold; margin-left: 10px;}
   background-color: #64A132
 }
 
-.game-list button:hover, .profile-list li.selected {
+.button:hover, .button.selected {
   background-color: #3c790a;
 }
 
 .submit {
   background-color: #184E63;
   float: right;
+}
+
+button.submit:hover {
+  background-color: #103e50;
+}
+
+.results {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.results .player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #184E63;
+  color: white;
+  font-size: 22px;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  margin: 10px;
+  height: 200px;
+}
+
+.result {
+  font-size: 28px;
+  width: 80%;
+  margin: 20px auto;
+  text-align: center;
 }

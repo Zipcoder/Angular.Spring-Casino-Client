@@ -8,9 +8,8 @@ import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { SelectGameComponent } from './components/select-game/select-game.component';
 import { SelectProfilesComponent } from './components/select-profiles/select-profiles.component';
-import { GameComponent } from './components/game/game.component';
+import { HighlowGameComponent } from './components/highlow-game/highlow-game.component';
 
-import { AvailableGamesService } from './services/available-games.service';
 import { ProfilesService } from './services/profiles.service';
 import { GameService } from './services/game.service';
 
@@ -19,7 +18,7 @@ import { GameService } from './services/game.service';
     AppComponent,
     SelectGameComponent,
     SelectProfilesComponent,
-    GameComponent
+    HighlowGameComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +26,7 @@ import { GameService } from './services/game.service';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [AvailableGamesService, ProfilesService, GameService],
+  providers: [ProfilesService, GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
